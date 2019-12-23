@@ -39,10 +39,10 @@ public class CandidatoController {
 		return candidatoService.buscarTodos();
 	}
 	
-	/*@GetMapping("/{id}")
-	public Candidato buscar(@PathVariable Integer id) {
+	@GetMapping("/{id}")
+	public Candidato buscar(@PathVariable String id) {
 		return candidatoService.buscar(id);
-	}*/
+	}
 
 	@PutMapping
 	public void atualizar(@RequestBody Candidato candidato) {

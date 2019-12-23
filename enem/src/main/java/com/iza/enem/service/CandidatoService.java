@@ -24,11 +24,11 @@ public class CandidatoService {
 		return candidatoRepository.findAll();
 	}
 
-
-	/*public Candidato buscar(Integer id) {
+	
+	public Candidato buscar(String id) {
 		return candidatoRepository.findById(id).orElse(null);
 	}
-
+	/*
 	public void excluir(Integer id) {
 		candidatoRepository.deleteById(id);;		
 	}*/
