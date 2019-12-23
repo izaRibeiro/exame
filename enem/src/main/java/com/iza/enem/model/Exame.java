@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Exame {
 	
@@ -16,9 +19,9 @@ public class Exame {
 	
 	private int vagas;
 
-	@OneToMany
-	@JoinColumn(name ="idCandidato")
-	private List<Candidato> candidatos;
+	/*@OneToMany
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private List<Candidato> candidatos;*/
 	
 	public int getVagas() {
 		return vagas;
@@ -28,13 +31,13 @@ public class Exame {
 		this.vagas = vagas;
 	}
 
-	public List<Candidato> getCandidatos() {
+	/*public List<Candidato> getCandidatos() {
 		return candidatos;
 	}
 
 	public void setCandidatos(List<Candidato> candidatos) {
 		this.candidatos = candidatos;
-	}
+	}*/
 	
 	
 }
