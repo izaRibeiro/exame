@@ -3,9 +3,8 @@ package com.iza.enem.model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,6 +17,7 @@ public class Exame {
 	private int vagas;
 
 	@OneToMany
+	@JoinColumn(name ="idCandidato")
 	private List<Candidato> candidatos;
 	
 	public int getVagas() {

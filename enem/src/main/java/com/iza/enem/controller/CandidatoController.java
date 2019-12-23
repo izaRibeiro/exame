@@ -1,20 +1,60 @@
 package com.iza.enem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.model.Candidato;
-import com.iza.enem.repository.CandidatoRepository;
+import com.iza.enem.service.CandidatoService;
 
-@Controller
+@RequestMapping("/candidatos")
+@RestController
 public class CandidatoController {
 	
+	private CandidatoService candidatoService;
+	//@Autowired
+	//private CandidatoRepository candidatoRepository;
 	@Autowired
-	private CandidatoRepository candidatoRepository;
+    public void CandidatoController(CandidatoService candidatoService) {
+        this.candidatoService = candidatoService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Candidato> salvar(@RequestBody Candidato c) {
+    	Candidato candidato = candidatoService.salvar(c);
+        return new ResponseEntity<>(candidato, HttpStatus.CREATED);
+    }
+    
+	@GetMapping
+	public Iterable<Candidato> buscarTodos() {
+		return candidatoService.buscarTodos();
+	}
 	
-	@RequestMapping(value="/cadastrarCandidato", method=RequestMethod.GET)
+	/*@GetMapping("/{id}")
+	public Candidato buscar(@PathVariable Integer id) {
+		return candidatoService.buscar(id);
+	}*/
+
+	@PutMapping
+	public void atualizar(@RequestBody Candidato candidato) {
+		candidatoService.salvar(candidato);
+	}
+
+	/*@DeleteMapping("/{id}")
+	public void excluir(@PathVariable Integer id) {
+		candidatoService.excluir(id);
+	}*/
+	    
+	/*@RequestMapping(value="/cadastrarCandidato", method=RequestMethod.GET)
 	public String form() {
 		return "candidato/formCandidato";
 	}
@@ -25,4 +65,12 @@ public class CandidatoController {
 		
 		return "redirect:/cadastrarCandidato";
 	}
+	
+	@RequestMapping("/candidatos")
+	public ModelAndView listarCandidatos() {
+		ModelAndView mv = new ModelAndView("index.html");
+		Iterable<Candidato> candidatos = candidatoRepository.findAll();
+		mv.addObject("candidatos", candidatos);
+		return mv;
+	}*/
 }
