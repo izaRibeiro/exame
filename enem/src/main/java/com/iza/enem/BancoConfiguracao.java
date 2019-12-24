@@ -15,7 +15,7 @@ public class BancoConfiguracao {
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/enem");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/hackathon");
         dataSource.setUsername("root");
         dataSource.setPassword("");
         return dataSource;

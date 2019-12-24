@@ -1,6 +1,7 @@
 package com.iza.enem.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 
@@ -21,7 +26,7 @@ public class Candidato implements Serializable{
 	
 	@Id
 	@Column(name = "IDCANDIDATO")
-	@GeneratedValue(strategy= GenerationType.SEQUENCE)
+	//@GeneratedValue(strategy= GenerationType.SEQUENCE)
 	private int idCandidato;
 	
 	@Column(name = "NOME")
@@ -33,11 +38,18 @@ public class Candidato implements Serializable{
 	@Column(name = "NOTA")
 	private Double nota;
 	
-	@ManyToOne
+	/*@ManyToOne
 	//private Exame exame_idexame;
 	//private String exame_idexame;
 	@JoinColumn(name = "EXAME_IDEXAME")
-	private Exame exame_idexame;
+	@Autowired
+	private Exame exame_idexame;*/
+	
+	@ManyToMany
+	@JoinTable(name = "exame_has_candidato",
+	joinColumns = @JoinColumn(name = "Candidato_idCandidato"),
+	inverseJoinColumns = @JoinColumn(name = "Exame_idExame"))
+	private List<Exame> exames;
 	
 	public Candidato() {
 	}
@@ -47,6 +59,7 @@ public class Candidato implements Serializable{
 		this.nome = nome;
 		this.cidade = cidade;
 		this.nota = nota;
+		//this.exames.add(exame);
 	}
 
 	
@@ -75,6 +88,14 @@ public class Candidato implements Serializable{
 		this.idCandidato = idCandidato;
 	}
 
+	/*public List<Exame> getExames() {
+		return exames;
+	}
+
+	public void setExames(List<Exame> exames) {
+		this.exames.add(exames);
+	}*/
+
 	/*public String getExame_idexame() {
 		return exame_idexame;
 	}
@@ -83,13 +104,13 @@ public class Candidato implements Serializable{
 		this.exame_idexame = exame_idexame;
 	}*/
 
-	public Exame getExame_idexame() {
+	/*public Exame getExame_idexame() {
 		return exame_idexame;
 	}
 
 	public void setExame_idexame(Exame exame_idexame) {
 		this.exame_idexame = exame_idexame;
-	}
+	}*/
 
 
 	

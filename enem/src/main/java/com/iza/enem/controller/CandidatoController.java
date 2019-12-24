@@ -51,7 +51,7 @@ public class CandidatoController {
 
 	/*@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
-		candidatoService.excluir(id);
+		candidatoService.excluir(id.toString());
 	}*/
 	    
 	/*@RequestMapping(value="/cadastrarCandidato", method=RequestMethod.GET)
