@@ -14,6 +14,6 @@ public class CandidatoDTO {
 	private Exame exame_idexame;
 	
 	public Candidato transformaParaObjeto() {
-		return new Candidato(idCandidato, nome, cidade, nota);
+		return new Candidato(idCandidato, nome, cidade);
 	}
 }

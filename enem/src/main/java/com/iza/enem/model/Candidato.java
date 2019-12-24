@@ -35,8 +35,6 @@ public class Candidato implements Serializable{
 	@Column(name = "CIDADE")
 	private String cidade;
 	
-	@Column(name = "NOTA")
-	private Double nota;
 	
 	/*@ManyToOne
 	//private Exame exame_idexame;
@@ -54,11 +52,10 @@ public class Candidato implements Serializable{
 	public Candidato() {
 	}
 	
-	public Candidato(int idCandidato, String nome, String cidade, Double nota) {
+	public Candidato(int idCandidato, String nome, String cidade) {
 		this.idCandidato = idCandidato;
 		this.nome = nome;
 		this.cidade = cidade;
-		this.nota = nota;
 		//this.exames.add(exame);
 	}
 
@@ -75,12 +72,7 @@ public class Candidato implements Serializable{
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	public Double getNota() {
-		return nota;
-	}
-	public void setNota(Double nota) {
-		this.nota = nota;
-	}
+
 	public int getIdCandidato() {
 		return idCandidato;
 	}
