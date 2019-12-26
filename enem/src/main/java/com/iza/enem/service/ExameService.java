@@ -25,7 +25,11 @@ public class ExameService {
 		return exameRepository.findAll();
 	}
 	
-	public Exame buscar(String id) {
+	public Exame buscar(Integer id) {
 		return exameRepository.findById(id).orElse(null);
+	}
+	
+	public void excluir(Integer id) {
+		exameRepository.deleteById(id);;		
 	}
 }

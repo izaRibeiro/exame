@@ -3,6 +3,7 @@ package com.iza.enem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.model.Candidato;
 import com.iza.enem.repository.CandidatoRepository;
 
@@ -16,19 +17,19 @@ public class CandidatoService {
         this.candidatoRepository = candidatoRepository;
     }
 
-    public Candidato salvar(Candidato candidato) {
-        return candidatoRepository.save(candidato);
+    public Candidato salvar(CandidatoDTO candidato) {
+        return candidatoRepository.save(candidato.transformaParaObjeto());
     }
     
 	public Iterable<Candidato> buscarTodos() {
 		return candidatoRepository.findAll();
 	}
 
-	public Candidato buscar(String id) {
+	public Candidato buscar(Integer id) {
 		return candidatoRepository.findById(id).orElse(null);
 	}
 	
-	/*public void excluir(String id) {
+	public void excluir(Integer id) {
 		candidatoRepository.deleteById(id);;		
-	}*/
+	}
 }

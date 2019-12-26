@@ -1,49 +1,61 @@
 package com.iza.enem.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
 
-@Entity
+@Entity(name = "Exame")
 public class Exame {
 	
 	
 	@Id
-	@Column(name = "IDEXAME")
-	private int idexame;
+	@Column(name = "ID")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer idexame;
 	
 	@Column(name = "NOME")
 	private String nome;
 	
 	@Column(name = "VAGAS")
-	private int vagas;
+	private Integer vagas;
 
-	/*@OneToMany
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	private List<Candidato> candidatos;*/
 	
 	@ManyToMany(mappedBy = "exames")
 	private List<Candidato> candidatos;
 	
-	public int getVagas() {
-		return vagas;
+	
+	public Exame() {
+	}
+	
+	public Exame(Integer idExame) {
+		this.idexame = idexame;
+		//this.candidatos = new ArrayList<Candidato>();
 	}
 
-	public void setVagas(int vagas) {
+	public Exame(Integer idexame, String nome,Integer vagas, Integer idCandidato) {
+	//	this.candidatos = new ArrayList<Candidato>();
+		this.idexame = idexame;
+		this.nome = nome;
 		this.vagas = vagas;
+		Candidato candidato = new Candidato(idCandidato); 
+		//this.candidatos.add(candidato);
 	}
 
-	public int getIdexame() {
+	
+	public Integer getIdexame() {
 		return idexame;
 	}
 
-	public void setIdexame(int idexame) {
+	public void setIdexame(Integer idexame) {
 		this.idexame = idexame;
 	}
 
@@ -55,14 +67,13 @@ public class Exame {
 		this.nome = nome;
 	}
 
-	
-	/*public List<Candidato> getCandidatos() {
-		return candidatos;
+	public Integer getVagas() {
+		return vagas;
 	}
 
-	public void setCandidatos(List<Candidato> candidatos) {
-		this.candidatos = candidatos;
-	}*/
-	
+	public void setVagas(Integer vagas) {
+		this.vagas = vagas;
+	}
+
 	
 }

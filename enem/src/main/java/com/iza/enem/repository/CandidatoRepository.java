@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.iza.enem.model.Candidato;
 
-public interface CandidatoRepository extends CrudRepository<Candidato, String>{
+public interface CandidatoRepository extends CrudRepository<Candidato, Integer>{
 
 
 }

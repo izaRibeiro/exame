@@ -22,17 +22,15 @@ import com.iza.enem.service.CandidatoService;
 @RequestMapping("/candidatos")
 @RestController
 public class CandidatoController {
-	
+	@Autowired
 	private CandidatoService candidatoService;
 	//@Autowired
 	//private CandidatoRepository candidatoRepository;
-	@Autowired
-    public void CandidatoController(CandidatoService candidatoService) {
-        this.candidatoService = candidatoService;
-    }
+	
+
 
     @PostMapping
-    public ResponseEntity<Candidato> salvar(@RequestBody Candidato c) {
+    public ResponseEntity<Candidato> salvar(@RequestBody CandidatoDTO c) {
     	Candidato candidato = candidatoService.salvar(c);
         return new ResponseEntity<>(candidato, HttpStatus.CREATED);
     }
@@ -43,19 +41,15 @@ public class CandidatoController {
 	}
 	
 	@GetMapping("/{id}")
-	public Candidato buscar(@PathVariable String id) {
+	public Candidato buscar(@PathVariable Integer id) {
 		return candidatoService.buscar(id);
 	}
 
-	@PutMapping
-	public void atualizar(@RequestBody Candidato candidato) {
-		candidatoService.salvar(candidato);
-	}
 
-	/*@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
-		candidatoService.excluir(id.toString());
-	}*/
+		candidatoService.excluir(id);
+	}
 	    
 	/*@RequestMapping(value="/cadastrarCandidato", method=RequestMethod.GET)
 	public String form() {

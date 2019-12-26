@@ -1,8 +1,10 @@
 package com.iza.enem.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,21 +15,22 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 
 
 
-@Entity
+@Entity(name = "Candidato")
 public class Candidato implements Serializable{
 	
 	private static final int serialVersionUID = 1;
 	
 	@Id
-	@Column(name = "IDCANDIDATO")
-	//@GeneratedValue(strategy= GenerationType.SEQUENCE)
-	private int idCandidato;
+	@Column(name = "ID")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer idCandidato;
 	
 	@Column(name = "NOME")
 	private String nome;
@@ -43,23 +46,30 @@ public class Candidato implements Serializable{
 	@Autowired
 	private Exame exame_idexame;*/
 	
-	@ManyToMany
-	@JoinTable(name = "exame_has_candidato",
-	joinColumns = @JoinColumn(name = "Candidato_idCandidato"),
-	inverseJoinColumns = @JoinColumn(name = "Exame_idExame"))
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "exame_candidato" ,
+	joinColumns = @JoinColumn(name = "Candidato_idCandidato", referencedColumnName = "ID"),
+	inverseJoinColumns = @JoinColumn(name = "Exame_idExame", referencedColumnName = "ID"))
 	private List<Exame> exames;
 	
 	public Candidato() {
 	}
 	
-	public Candidato(int idCandidato, String nome, String cidade) {
+	public Candidato(int idCandidato, String nome, String cidade, Integer idexame) {
+		this.exames = new ArrayList<Exame>();
+		Exame exame = new Exame(idexame); 
+		//exame.getCandidatos().add(this);
 		this.idCandidato = idCandidato;
 		this.nome = nome;
 		this.cidade = cidade;
-		//this.exames.add(exame);
+		this.exames.add(exame);
+	}
+	
+	public Candidato(Integer idCandidato) {
+		super();
+		this.idCandidato = idCandidato;
 	}
 
-	
 	public String getNome() {
 		return nome;
 	}
@@ -76,33 +86,19 @@ public class Candidato implements Serializable{
 	public int getIdCandidato() {
 		return idCandidato;
 	}
-	public void setIdCandidato(int idCandidato) {
+	public void setIdCandidato(Integer idCandidato) {
 		this.idCandidato = idCandidato;
 	}
 
-	/*public List<Exame> getExames() {
-		return exames;
-	}
-
-	public void setExames(List<Exame> exames) {
-		this.exames.add(exames);
-	}*/
-
-	/*public String getExame_idexame() {
-		return exame_idexame;
-	}
-
-	public void setExame_idexame(String exame_idexame) {
-		this.exame_idexame = exame_idexame;
-	}*/
-
-	/*public Exame getExame_idexame() {
-		return exame_idexame;
-	}
-
-	public void setExame_idexame(Exame exame_idexame) {
-		this.exame_idexame = exame_idexame;
-	}*/
+    public void addExame(Exame exame) {
+        exames.add(exame);
+        exame.getIdexame();
+    }
+ 
+    public void removeExame(Exame exame) {
+        exames.remove(exame);
+        exame.getIdexame();
+    }
 
 
 	
