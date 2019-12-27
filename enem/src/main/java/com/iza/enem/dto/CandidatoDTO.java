@@ -1,8 +1,6 @@
 package com.iza.enem.dto;
 
 import com.iza.enem.model.Candidato;
-import com.iza.enem.model.Exame;
-import com.iza.enem.service.CandidatoService;
 
 
 public class CandidatoDTO {
@@ -12,8 +10,8 @@ public class CandidatoDTO {
 	
 	private Integer idexame;
 	
-	public Candidato transformaParaObjeto() {
-		return new Candidato(idCandidato, nome, cidade, idexame);
+	public Candidato converterParaEntidade() {
+		return new Candidato(nome, cidade, idexame);
 	}
 
 	public Integer getIdCandidato() {

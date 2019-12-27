@@ -9,8 +9,8 @@ public class ExameDTO {
 	
 	private Integer idCandidato;
 	
-	public Exame transformaParaObjeto() {
-		return new Exame(idexame, nome, vagas, idCandidato);
+	public Exame converterParaEntidade() {
+		return new Exame(nome, vagas);
 	}
 
 	public Integer getIdexame() {

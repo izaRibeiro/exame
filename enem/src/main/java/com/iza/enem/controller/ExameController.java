@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iza.enem.dto.ExameDTO;
-import com.iza.enem.model.Candidato;
 import com.iza.enem.model.Exame;
 import com.iza.enem.service.ExameService;
 
@@ -20,17 +19,12 @@ import com.iza.enem.service.ExameService;
 @RestController
 public class ExameController {
 	
-	private ExameService exameService;
-	//@Autowired
-	//private CandidatoRepository candidatoRepository;
 	@Autowired
-    public void ExameController(ExameService exameService) {
-        this.exameService = exameService;
-    }
-
+	private ExameService exameService;
+    
     @PostMapping
     public ResponseEntity<Exame> salvar(@RequestBody ExameDTO e) {
-    	Exame exame = exameService.salvar(e.transformaParaObjeto());
+    	Exame exame = exameService.salvar(e.converterParaEntidade());
         return new ResponseEntity<>(exame, HttpStatus.CREATED);
     }
     

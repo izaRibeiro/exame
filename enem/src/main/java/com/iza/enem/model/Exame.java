@@ -8,55 +8,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import org.hibernate.annotations.Cascade;
+import javax.persistence.Table;
 
-@Entity(name = "Exame")
+@Entity
+@Table(name = "Exame")
 public class Exame {
-	
-	
+
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer idexame;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	@Column(name = "NOME")
 	private String nome;
-	
+
 	@Column(name = "VAGAS")
 	private Integer vagas;
 
-	
 	@ManyToMany(mappedBy = "exames")
 	private List<Candidato> candidatos;
-	
-	
+
 	public Exame() {
 	}
-	
+
 	public Exame(Integer idExame) {
-		this.idexame = idexame;
-		//this.candidatos = new ArrayList<Candidato>();
+		this.id = idExame;
+		this.candidatos = new ArrayList<Candidato>();
 	}
 
-	public Exame(Integer idexame, String nome,Integer vagas, Integer idCandidato) {
-	//	this.candidatos = new ArrayList<Candidato>();
-		this.idexame = idexame;
+	public Exame(String nome, Integer vagas) {
 		this.nome = nome;
 		this.vagas = vagas;
-		Candidato candidato = new Candidato(idCandidato); 
-		//this.candidatos.add(candidato);
 	}
 
-	
-	public Integer getIdexame() {
-		return idexame;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdexame(Integer idexame) {
-		this.idexame = idexame;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -75,5 +66,12 @@ public class Exame {
 		this.vagas = vagas;
 	}
 
-	
+	public List<Candidato> getCandidatos() {
+		return candidatos;
+	}
+
+	public void setCandidatos(List<Candidato> candidatos) {
+		this.candidatos = candidatos;
+	}
+
 }

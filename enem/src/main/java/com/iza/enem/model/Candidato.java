@@ -13,93 +13,84 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.Table;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.iza.enem.dto.CandidatoDTO;
 
+@Entity
+@Table(name = "Candidato")
+public class Candidato implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 
-
-
-@Entity(name = "Candidato")
-public class Candidato implements Serializable{
-	
-	private static final int serialVersionUID = 1;
-	
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer idCandidato;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	@Column(name = "NOME")
 	private String nome;
-	
+
 	@Column(name = "CIDADE")
 	private String cidade;
-	
-	
-	/*@ManyToOne
-	//private Exame exame_idexame;
-	//private String exame_idexame;
-	@JoinColumn(name = "EXAME_IDEXAME")
-	@Autowired
-	private Exame exame_idexame;*/
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name = "exame_candidato" ,
-	joinColumns = @JoinColumn(name = "Candidato_idCandidato", referencedColumnName = "ID"),
-	inverseJoinColumns = @JoinColumn(name = "Exame_idExame", referencedColumnName = "ID"))
+
+	@ManyToMany(cascade = { CascadeType.MERGE })
+	@JoinTable(name = "exame_candidato", 
+		joinColumns = @JoinColumn(name = "ID_CANDIDATO", referencedColumnName = "ID"), 
+		inverseJoinColumns = @JoinColumn(name = "ID_EXAME", referencedColumnName = "ID"))
 	private List<Exame> exames;
-	
+
 	public Candidato() {
 	}
-	
-	public Candidato(int idCandidato, String nome, String cidade, Integer idexame) {
+
+	public Candidato(String nome, String cidade, Integer idexame) {
 		this.exames = new ArrayList<Exame>();
-		Exame exame = new Exame(idexame); 
-		//exame.getCandidatos().add(this);
-		this.idCandidato = idCandidato;
 		this.nome = nome;
 		this.cidade = cidade;
-		this.exames.add(exame);
 	}
-	
+
 	public Candidato(Integer idCandidato) {
 		super();
-		this.idCandidato = idCandidato;
+		this.id = idCandidato;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getCidade() {
 		return cidade;
 	}
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 
-	public int getIdCandidato() {
-		return idCandidato;
-	}
-	public void setIdCandidato(Integer idCandidato) {
-		this.idCandidato = idCandidato;
+	public List<Exame> getExames() {
+		return exames;
 	}
 
-    public void addExame(Exame exame) {
-        exames.add(exame);
-        exame.getIdexame();
-    }
- 
-    public void removeExame(Exame exame) {
-        exames.remove(exame);
-        exame.getIdexame();
-    }
+	public void setExames(List<Exame> exames) {
+		this.exames = exames;
+	}
 
-
-	
+	public CandidatoDTO converterParaDTO() {
+		CandidatoDTO candidatoDTO = new CandidatoDTO();
+		candidatoDTO.setCidade(this.cidade);
+		candidatoDTO.setNome(this.nome);
+		candidatoDTO.setIdCandidato(this.id);
+		return candidatoDTO;
+	}
 }

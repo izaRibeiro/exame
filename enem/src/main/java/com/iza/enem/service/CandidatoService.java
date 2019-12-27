@@ -5,22 +5,22 @@ import org.springframework.stereotype.Service;
 
 import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.model.Candidato;
+import com.iza.enem.model.Exame;
 import com.iza.enem.repository.CandidatoRepository;
 
 @Service
 public class CandidatoService {
 
-    private final CandidatoRepository candidatoRepository;
+	@Autowired
+	private CandidatoRepository candidatoRepository;
 
-    @Autowired
-    public CandidatoService(CandidatoRepository candidatoRepository) {
-        this.candidatoRepository = candidatoRepository;
-    }
+	public Candidato salvar(CandidatoDTO candidatoDTO) {
+		Candidato candidato = candidatoDTO.converterParaEntidade();
+		candidato.getExames().add(new Exame(candidatoDTO.getIdexame()));
 
-    public Candidato salvar(CandidatoDTO candidato) {
-        return candidatoRepository.save(candidato.transformaParaObjeto());
-    }
-    
+		return candidatoRepository.save(candidato);
+	}
+
 	public Iterable<Candidato> buscarTodos() {
 		return candidatoRepository.findAll();
 	}
@@ -28,8 +28,9 @@ public class CandidatoService {
 	public Candidato buscar(Integer id) {
 		return candidatoRepository.findById(id).orElse(null);
 	}
-	
+
 	public void excluir(Integer id) {
-		candidatoRepository.deleteById(id);;		
+		candidatoRepository.deleteById(id);
+
 	}
 }
