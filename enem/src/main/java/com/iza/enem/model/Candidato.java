@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.iza.enem.dto.CandidatoDTO;
 
 @Entity
@@ -38,6 +39,7 @@ public class Candidato implements Serializable {
 	@JoinTable(name = "exame_candidato", 
 		joinColumns = @JoinColumn(name = "ID_CANDIDATO", referencedColumnName = "ID"), 
 		inverseJoinColumns = @JoinColumn(name = "ID_EXAME", referencedColumnName = "ID"))
+	@JsonBackReference
 	private List<Exame> exames;
 
 	public Candidato() {

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "Exame")
 public class Exame {
@@ -27,6 +29,7 @@ public class Exame {
 	private Integer vagas;
 
 	@ManyToMany(mappedBy = "exames")
+	@JsonManagedReference
 	private List<Candidato> candidatos;
 
 	public Exame() {
