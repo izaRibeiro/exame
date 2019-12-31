@@ -11,7 +11,7 @@ public class CandidatoDTO {
 	private Integer idexame;
 	
 	public Candidato converterParaEntidade() {
-		return new Candidato(nome, cidade, idexame);
+		return new Candidato(idCandidato, nome, cidade, idexame);
 	}
 
 	public Integer getIdCandidato() {

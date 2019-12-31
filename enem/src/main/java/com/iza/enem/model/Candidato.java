@@ -45,10 +45,11 @@ public class Candidato implements Serializable {
 	public Candidato() {
 	}
 
-	public Candidato(String nome, String cidade, Integer idexame) {
+	public Candidato(Integer id, String nome, String cidade, Integer idexame) {
 		this.exames = new ArrayList<Exame>();
 		this.nome = nome;
 		this.cidade = cidade;
+		this.id = id;
 	}
 
 	public Candidato(Integer idCandidato) {

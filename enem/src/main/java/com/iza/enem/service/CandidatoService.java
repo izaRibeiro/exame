@@ -35,4 +35,12 @@ public class CandidatoService {
 		candidatoRepository.deleteById(id);
 
 	}
+	
+	public Candidato editar(CandidatoDTO candidatoDTO) {
+		Candidato candidato = candidatoDTO.converterParaEntidade();
+		candidato.getExames().add(new Exame(candidatoDTO.getIdexame()));
+
+		return candidatoRepository.save(candidato);
+	}
+	
 }

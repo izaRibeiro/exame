@@ -3,9 +3,7 @@ package com.iza.enem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iza.enem.model.Candidato;
 import com.iza.enem.model.Exame;
-import com.iza.enem.repository.CandidatoRepository;
 import com.iza.enem.repository.ExameRepository;
 
 @Service
@@ -32,4 +30,8 @@ public class ExameService {
 	public void excluir(Integer id) {
 		exameRepository.deleteById(id);;		
 	}
+	
+    public Exame editar(Exame exame) {
+        return exameRepository.save(exame);
+    }
 }

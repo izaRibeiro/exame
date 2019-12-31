@@ -10,7 +10,7 @@ public class ExameDTO {
 	private Integer idCandidato;
 	
 	public Exame converterParaEntidade() {
-		return new Exame(nome, vagas);
+		return new Exame(idexame, nome, vagas);
 	}
 
 	public Integer getIdexame() {

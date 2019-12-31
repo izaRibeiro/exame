@@ -40,9 +40,10 @@ public class Exame {
 		this.candidatos = new ArrayList<Candidato>();
 	}
 
-	public Exame(String nome, Integer vagas) {
+	public Exame(Integer id, String nome, Integer vagas) {
 		this.nome = nome;
 		this.vagas = vagas;
+		this.id = id;
 	}
 
 	public Integer getId() {
