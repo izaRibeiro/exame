@@ -1,7 +1,6 @@
 package com.iza.enem.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -41,12 +40,16 @@ public class Candidato implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "ID_EXAME", referencedColumnName = "ID"))
 	@JsonBackReference
 	private List<Exame> exames;
+	
+	/*@OneToMany(mappedBy = "candidato", cascade = CascadeType.ALL)
+	private List<ExameCandidato> exameCandidato;*/
+
 
 	public Candidato() {
 	}
 
 	public Candidato(Integer id, String nome, String cidade, Integer idexame) {
-		this.exames = new ArrayList<Exame>();
+		//this.exames = new ArrayList<Exame>();
 		this.nome = nome;
 		this.cidade = cidade;
 		this.id = id;
@@ -81,13 +84,13 @@ public class Candidato implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public List<Exame> getExames() {
+	/*public List<Exame> getExames() {
 		return exames;
 	}
 
 	public void setExames(List<Exame> exames) {
 		this.exames = exames;
-	}
+	}*/
 
 	public CandidatoDTO converterParaDTO() {
 		CandidatoDTO candidatoDTO = new CandidatoDTO();
