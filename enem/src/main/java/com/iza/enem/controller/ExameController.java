@@ -37,8 +37,9 @@ public class ExameController {
 	}
 	
 	@GetMapping("/{id}")
-	public Exame buscar(@PathVariable Integer id) {
-		return exameService.buscar(id);
+	public ExameDTO buscar(@PathVariable Integer id) {
+		Exame exame = exameService.buscar(id);
+		return exame.converterParaDTO();
 	}
 	
 	@DeleteMapping("/{id}")
@@ -46,9 +47,9 @@ public class ExameController {
 		exameService.excluir(id);
 	}
 	
-    @PutMapping
-    public ResponseEntity<Exame> editar(@RequestBody ExameDTO e) {
-    	Exame exame = exameService.salvar(e.converterParaEntidade());
+    @PutMapping("/{id}")
+    public ResponseEntity<Exame> editar(@PathVariable Integer id, @RequestBody ExameDTO e) {
+    	Exame exame = exameService.editar(e.converterParaEntidade());
         return new ResponseEntity<>(exame, HttpStatus.CREATED);
     }
     

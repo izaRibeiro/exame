@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.iza.enem.dto.ExameDTO;
 
 @Entity
 @Table(name = "Exame")
@@ -80,4 +81,7 @@ public class Exame {
 		this.candidatos = candidatos;
 	}
 
+	public ExameDTO converterParaDTO() {
+		return new ExameDTO(id, nome, vagas);
+	}
 }

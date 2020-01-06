@@ -12,6 +12,17 @@ public class ExameDTO {
 	public Exame converterParaEntidade() {
 		return new Exame(idexame, nome, vagas);
 	}
+	
+	
+
+	public ExameDTO(Integer idexame, String nome, Integer vagas) {
+		super();
+		this.idexame = idexame;
+		this.nome = nome;
+		this.vagas = vagas;
+	}
+
+
 
 	public Integer getIdexame() {
 		return idexame;
