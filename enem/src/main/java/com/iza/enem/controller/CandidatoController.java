@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iza.enem.dto.CandidatoDTO;
+import com.iza.enem.dto.ExameDTO;
 import com.iza.enem.model.Candidato;
 import com.iza.enem.service.CandidatoService;
 
@@ -50,10 +51,10 @@ public class CandidatoController {
 		candidatoService.excluir(id);
 	}
 	
-	@PutMapping
-	public ResponseEntity<CandidatoDTO> editar(@RequestBody CandidatoDTO candidatoDTO) {
-		Candidato candidato = candidatoService.salvar(candidatoDTO);
-		return new ResponseEntity<>(candidato.converterParaDTO(), HttpStatus.CREATED);
+	@PutMapping("/{id}")
+	public ResponseEntity<Candidato> editar(@PathVariable Integer id, @RequestBody CandidatoDTO c) {
+		Candidato candidato = candidatoService.editar(c.converterParaEntidade());
+		return new ResponseEntity<>(candidato , HttpStatus.CREATED);
 	}
 
 	/*@PostMapping("/{ide}/{idc}")

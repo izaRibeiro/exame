@@ -31,17 +31,8 @@ public class ExameCandidatoController {
 		return exameCandidatoService.salvar(exameCandidatoDTO);
 	}
 
-	@DeleteMapping("/exame/{id}")
-	public void deletarTodosCandidato(@PathVariable Long id) {
-		// candidatos.deleteById(id);
-	}
-
-	@DeleteMapping("/candidato/{id}")
-	public void deletarTodosExame(@PathVariable Long id) {
-		// candidatos.deleteById(id);
-	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}/{id}")
 	public void deletar(@PathVariable ExameCandidatoId exameCandidatoid) {
 		exameCandidatoService.deletar(exameCandidatoid);
 	}

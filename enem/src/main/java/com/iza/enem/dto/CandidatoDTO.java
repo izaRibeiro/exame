@@ -4,22 +4,22 @@ import com.iza.enem.model.Candidato;
 
 
 public class CandidatoDTO {
-	private Integer idCandidato;
+	private Integer id;
 	private String nome;
 	private String cidade;
 	
 	private Integer idexame;
 	
 	public Candidato converterParaEntidade() {
-		return new Candidato(idCandidato, nome, cidade, idexame);
+		return new Candidato(id, nome, cidade, idexame);
 	}
 
-	public Integer getIdCandidato() {
-		return idCandidato;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdCandidato(Integer idCandidato) {
-		this.idCandidato = idCandidato;
+	public void setId(Integer idCandidato) {
+		this.id = idCandidato;
 	}
 
 	public String getNome() {

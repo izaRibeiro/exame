@@ -36,8 +36,15 @@ public class CandidatoService {
 
 	}
 	
-	public Candidato editar(CandidatoDTO candidatoDTO) {
+	/*public Candidato editar(CandidatoDTO candidatoDTO) {
 		Candidato candidato = candidatoDTO.converterParaEntidade();
+		//candidato.getExames().add(new Exame(candidatoDTO.getIdexame()));
+
+		return candidatoRepository.save(candidato);
+	}*/
+	
+	public Candidato editar(Candidato candidato) {
+		//Candidato candidato = candidatoDTO.converterParaEntidade();
 		//candidato.getExames().add(new Exame(candidatoDTO.getIdexame()));
 
 		return candidatoRepository.save(candidato);

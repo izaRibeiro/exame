@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iza.enem.dto.CandidatoDTO;
 
 @Entity
@@ -96,7 +97,9 @@ public class Candidato implements Serializable {
 		CandidatoDTO candidatoDTO = new CandidatoDTO();
 		candidatoDTO.setCidade(this.cidade);
 		candidatoDTO.setNome(this.nome);
-		candidatoDTO.setIdCandidato(this.id);
+		candidatoDTO.setId(this.id);
 		return candidatoDTO;
 	}
+	
+	
 }
