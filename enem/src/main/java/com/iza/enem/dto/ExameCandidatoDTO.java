@@ -15,7 +15,7 @@ public class ExameCandidatoDTO {
 	public ExameCandidatoDTO() {
 	}
 
-	public ExameCandidatoDTO(Integer candidato, Integer exame, Double nota) {
+	public ExameCandidatoDTO(Integer exame,Integer candidato, Double nota) {
 		super();
 		this.nota = nota;
 		this.candidato = candidato;
@@ -50,7 +50,7 @@ public class ExameCandidatoDTO {
 	}
 
 	public ExameCandidato converterParaEntidade() {
-		return new ExameCandidato(this.nota, (new ExameCandidatoId(this.candidato, this.exame)));
+		return new ExameCandidato(this.nota, (new ExameCandidatoId(this.exame, this.candidato)));
 	}
 	
 }

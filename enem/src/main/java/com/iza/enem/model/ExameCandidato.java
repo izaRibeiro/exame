@@ -16,16 +16,6 @@ public class ExameCandidato implements Serializable{
 	@Column(name = "NOTA_CANDIDATO")
 	private Double nota;
 	
-	/*@Id
-	@ManyToOne
-	@JoinColumn(name = "ID_CANDIDATO")
-	private Candidato candidato;
-	
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "ID_EXAME")
-	private Exame exame;*/
-	
 	public ExameCandidato() {
 	}
 

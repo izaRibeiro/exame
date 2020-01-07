@@ -15,7 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iza.enem.dto.CandidatoDTO;
 
 @Entity
@@ -42,15 +41,10 @@ public class Candidato implements Serializable {
 	@JsonBackReference
 	private List<Exame> exames;
 	
-	/*@OneToMany(mappedBy = "candidato", cascade = CascadeType.ALL)
-	private List<ExameCandidato> exameCandidato;*/
-
-
 	public Candidato() {
 	}
 
 	public Candidato(Integer id, String nome, String cidade, Integer idexame) {
-		//this.exames = new ArrayList<Exame>();
 		this.nome = nome;
 		this.cidade = cidade;
 		this.id = id;
@@ -85,13 +79,7 @@ public class Candidato implements Serializable {
 		this.cidade = cidade;
 	}
 
-	/*public List<Exame> getExames() {
-		return exames;
-	}
 
-	public void setExames(List<Exame> exames) {
-		this.exames = exames;
-	}*/
 
 	public CandidatoDTO converterParaDTO() {
 		CandidatoDTO candidatoDTO = new CandidatoDTO();

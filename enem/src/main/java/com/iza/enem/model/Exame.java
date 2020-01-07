@@ -32,15 +32,12 @@ public class Exame {
 	@JsonManagedReference
 	private List<Candidato> candidatos;
 	
-	/*@OneToMany(mappedBy = "exame", cascade = CascadeType.ALL)
-	private List<ExameCandidato> exameCandidato;*/
 
 	public Exame() {
 	}
 
 	public Exame(Integer idExame) {
 		this.id = idExame;
-	//	this.candidatos = new ArrayList<Candidato>();
 	}
 
 	public Exame(Integer id, String nome, Integer vagas) {

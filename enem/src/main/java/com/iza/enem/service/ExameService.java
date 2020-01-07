@@ -3,6 +3,7 @@ package com.iza.enem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iza.enem.dto.ExameDTO;
 import com.iza.enem.model.Exame;
 import com.iza.enem.repository.ExameRepository;
 

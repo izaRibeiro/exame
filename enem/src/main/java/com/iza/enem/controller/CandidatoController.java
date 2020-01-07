@@ -57,13 +57,4 @@ public class CandidatoController {
 		return new ResponseEntity<>(candidato , HttpStatus.CREATED);
 	}
 
-	/*@PostMapping("/{ide}/{idc}")
-	public void inserirNota(@RequestBody Integer ide, Integer idc) {
-
-		jdbcTemplate.update(
-			    "INSERT INTO exame_candidato (ID_CANDIDATO, ID_EXAME) VALUES (?, ?)",
-			    ide, idc
-			);
-		
-	}*/
 }

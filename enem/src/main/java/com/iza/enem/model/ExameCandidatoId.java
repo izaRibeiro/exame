@@ -27,8 +27,6 @@ public class ExameCandidatoId implements Serializable{
 		
 	}
 
-
-
 	public Integer getCandidato() {
 		return candidato;
 	}
