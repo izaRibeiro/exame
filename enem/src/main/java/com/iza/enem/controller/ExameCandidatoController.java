@@ -1,6 +1,7 @@
 package com.iza.enem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import com.iza.enem.model.ExameCandidato;
 import com.iza.enem.model.ExameCandidatoId;
 import com.iza.enem.service.ExameCandidatoService;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/exameCandidato")
 @RestController
 public class ExameCandidatoController {
@@ -22,7 +23,7 @@ public class ExameCandidatoController {
 	private ExameCandidatoService exameCandidatoService;
 
 	@GetMapping
-	public Iterable<ExameCandidato> buscar() {
+	public Iterable<ExameCandidatoDTO> buscar() {
 		return exameCandidatoService.buscarTodos();
 	}
 

@@ -15,8 +15,8 @@ public class ExameCandidatoService {
 	private ExameCandidatoRepository exameCandidatoRepository;
 
 
-	public Iterable<ExameCandidato> buscarTodos() {
-		return exameCandidatoRepository.findAll();
+	public Iterable<ExameCandidatoDTO> buscarTodos() {
+		return exameCandidatoRepository.buscarTodos();
 	}
 
 	public ExameCandidatoDTO buscar(ExameCandidatoId exameCandidatoId) {

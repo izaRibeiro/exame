@@ -54,4 +54,14 @@ public class ExameCandidato implements Serializable{
 	public ExameCandidatoDTO converterParaDTO() {
 		return new ExameCandidatoDTO(this.id.getCandidato(), this.id.getExame(), this.nota);
 	}
+
+	public ExameCandidatoId getId() {
+		return id;
+	}
+
+	public void setId(ExameCandidatoId id) {
+		this.id = id;
+	}
+	
+	
 }
