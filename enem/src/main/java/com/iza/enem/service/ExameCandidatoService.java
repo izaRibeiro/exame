@@ -2,6 +2,7 @@ package com.iza.enem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.iza.enem.model.ExameCandidatoId;
 import com.iza.enem.dto.ExameCandidatoDTO;
@@ -14,10 +15,14 @@ public class ExameCandidatoService {
 	private ExameCandidatoRepository exameCandidatoRepository;
 
 
-	public Iterable<ExameCandidato> buscar() {
+	public Iterable<ExameCandidato> buscarTodos() {
 		return exameCandidatoRepository.findAll();
 	}
 
+	public ExameCandidatoDTO buscar(ExameCandidatoId exameCandidatoId) {
+		return exameCandidatoRepository.findById(exameCandidatoId).get().converterParaDTO();
+	}
+	
 	/*public Iterable<ExameCandidato> buscarTodosPorCandidato(Long candidatoId) {
 		return exameCandidatoRepository.findByInscricaoKeyCandidatoId(candidatoId);
 	}
@@ -32,8 +37,8 @@ public class ExameCandidatoService {
 		return exameCandidatoRepository.save(exameCandidatoDTO.converterParaEntidade());
 	}
 
-	public void deletar(ExameCandidatoId inscricaoKey) {
-		exameCandidatoRepository.deleteById(inscricaoKey);
+	public void deletar(ExameCandidatoId exameCandidatoId) {
+		exameCandidatoRepository.deleteById(exameCandidatoId);
 	}
 
 }

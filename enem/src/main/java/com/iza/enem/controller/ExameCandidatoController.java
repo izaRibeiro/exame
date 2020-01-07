@@ -14,6 +14,7 @@ import com.iza.enem.model.ExameCandidato;
 import com.iza.enem.model.ExameCandidatoId;
 import com.iza.enem.service.ExameCandidatoService;
 
+
 @RequestMapping("/exameCandidato")
 @RestController
 public class ExameCandidatoController {
@@ -22,9 +23,14 @@ public class ExameCandidatoController {
 
 	@GetMapping
 	public Iterable<ExameCandidato> buscar() {
-		return exameCandidatoService.buscar();
+		return exameCandidatoService.buscarTodos();
 	}
 
+	@GetMapping("/{idExame}/{idCandidato}")
+	public ExameCandidatoDTO buscar(@PathVariable Integer idCandidato,@PathVariable Integer idExame) {
+		return exameCandidatoService.buscar(new ExameCandidatoId(idExame, idCandidato));
+	}
+	
 	@PostMapping
 	public ExameCandidato salvar(@RequestBody ExameCandidatoDTO exameCandidatoDTO) {
 		System.out.println(exameCandidatoDTO.getNota());
