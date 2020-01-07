@@ -20,10 +20,11 @@ public class ExameCandidatoId implements Serializable{
 
 
 	
-	public ExameCandidatoId(Integer candidato, Integer exame) {
+	public ExameCandidatoId(Integer exame, Integer candidato) {
 		super();
-		this.candidato = candidato;
 		this.exame = exame;
+		this.candidato = candidato;
+		
 	}
 
 

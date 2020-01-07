@@ -32,8 +32,8 @@ public class ExameCandidatoController {
 	}
 
 	
-	@DeleteMapping("/{id}/{id}")
-	public void deletar(@PathVariable ExameCandidatoId exameCandidatoid) {
-		exameCandidatoService.deletar(exameCandidatoid);
+	@DeleteMapping("/{idExame}/{idCandidato}")
+	public void deletar(@PathVariable Integer idExame, @PathVariable Integer idCandidato) {
+		exameCandidatoService.deletar(new ExameCandidatoId(idExame, idCandidato));
 	}
 }
