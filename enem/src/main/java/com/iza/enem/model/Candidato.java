@@ -49,6 +49,11 @@ public class Candidato implements Serializable {
 		this.cidade = cidade;
 		this.id = id;
 	}
+	
+	public Candidato(Integer id, String nome, String cidade) {
+		this.nome = nome;
+		this.cidade = cidade;
+	}
 
 	public Candidato(Integer idCandidato) {
 		super();

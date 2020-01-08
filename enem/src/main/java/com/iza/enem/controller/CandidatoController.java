@@ -37,7 +37,7 @@ public class CandidatoController {
 	}
 
 	@GetMapping
-	public Iterable<Candidato> buscarTodos() {
+	public Iterable<CandidatoDTO> buscarTodos() {
 		return candidatoService.buscarTodos();
 	}
 
@@ -53,7 +53,7 @@ public class CandidatoController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Candidato> editar(@PathVariable Integer id, @RequestBody CandidatoDTO c) {
-		Candidato candidato = candidatoService.editar(c.converterParaEntidade());
+		Candidato candidato = candidatoService.editar(c);
 		return new ResponseEntity<>(candidato , HttpStatus.CREATED);
 	}
 

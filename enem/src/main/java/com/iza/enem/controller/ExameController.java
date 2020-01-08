@@ -27,12 +27,12 @@ public class ExameController {
     
     @PostMapping
     public ResponseEntity<Exame> salvar(@RequestBody ExameDTO e) {
-    	Exame exame = exameService.salvar(e.converterParaEntidade());
+    	Exame exame = exameService.salvar(e);
         return new ResponseEntity<>(exame, HttpStatus.CREATED);
     }
     
 	@GetMapping
-	public Iterable<Exame> buscarTodos() {
+	public Iterable<ExameDTO> buscarTodos() {
 		return exameService.buscarTodos();
 	}
 	
@@ -49,7 +49,7 @@ public class ExameController {
 	
     @PutMapping("/{id}")
     public ResponseEntity<Exame> editar(@PathVariable Integer id, @RequestBody ExameDTO e) {
-    	Exame exame = exameService.editar(e.converterParaEntidade());
+    	Exame exame = exameService.editar(e);
         return new ResponseEntity<>(exame, HttpStatus.CREATED);
     }
     

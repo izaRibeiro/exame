@@ -10,6 +10,17 @@ public class CandidatoDTO {
 	
 	private Integer idexame;
 	
+	public CandidatoDTO() {
+
+	}
+	
+	public CandidatoDTO(Integer id, String nome, String cidade) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cidade = cidade;
+	}
+
 	public Candidato converterParaEntidade() {
 		return new Candidato(id, nome, cidade, idexame);
 	}

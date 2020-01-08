@@ -16,12 +16,12 @@ public class ExameService {
         this.exameRepository = exameRepository;
     }
 
-    public Exame salvar(Exame exame) {
-        return exameRepository.save(exame);
+    public Exame salvar(ExameDTO exame) {
+        return exameRepository.save(exame.converterParaEntidade());
     }
     
-	public Iterable<Exame> buscarTodos() {
-		return exameRepository.findAll();
+	public Iterable<ExameDTO> buscarTodos() {
+		return exameRepository.buscarTodos();
 	}
 	
 	public Exame buscar(Integer id) {
@@ -32,7 +32,7 @@ public class ExameService {
 		exameRepository.deleteById(id);;		
 	}
 	
-    public Exame editar(Exame exame) {
-        return exameRepository.save(exame);
+    public Exame editar(ExameDTO exame) {
+        return exameRepository.save(exame.converterParaEntidade());
     }
 }

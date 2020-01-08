@@ -21,8 +21,8 @@ public class CandidatoService {
 	}
 
 	@Scheduled(fixedRate=500)
-	public Iterable<Candidato> buscarTodos() {
-		return candidatoRepository.findAll();
+	public Iterable<CandidatoDTO> buscarTodos() {
+		return candidatoRepository.buscarTodos();
 	}
 
 	public Candidato buscar(Integer id) {
@@ -34,8 +34,8 @@ public class CandidatoService {
 	}
 
 	
-	public Candidato editar(Candidato candidato) {
-		return candidatoRepository.save(candidato);
+	public Candidato editar(CandidatoDTO candidato) {
+		return candidatoRepository.save(candidato.converterParaEntidade());
 	}
 	
 }
