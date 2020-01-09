@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.dto.ExameDTO;
@@ -31,9 +32,13 @@ public class CandidatoController {
 	
 	@PostMapping
 	public ResponseEntity<CandidatoDTO> salvar(@RequestBody CandidatoDTO candidatoDTO) {
-		Candidato candidato = candidatoService.salvar(candidatoDTO);
+		try {
+			Candidato candidato = candidatoService.salvar(candidatoDTO);
 
-		return new ResponseEntity<>(candidato.converterParaDTO(), HttpStatus.CREATED);
+			return new ResponseEntity<>(candidato.converterParaDTO(), HttpStatus.CREATED);
+		}catch(RuntimeException e) {
+			throw new  ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+		}
 	}
 
 	@GetMapping

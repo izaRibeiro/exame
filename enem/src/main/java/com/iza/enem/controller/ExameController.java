@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.iza.enem.dto.ExameDTO;
 import com.iza.enem.model.Exame;
@@ -26,9 +27,14 @@ public class ExameController {
 	private ExameService exameService;
     
     @PostMapping
-    public ResponseEntity<Exame> salvar(@RequestBody ExameDTO e) {
-    	Exame exame = exameService.salvar(e);
-        return new ResponseEntity<>(exame, HttpStatus.CREATED);
+    public ResponseEntity<Exame> salvar(@RequestBody ExameDTO examedto) {
+    	try {
+        	Exame exame = exameService.salvar(examedto);
+            return new ResponseEntity<>(exame, HttpStatus.CREATED);
+    	}catch(RuntimeException e) {
+    		throw new  ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+    	}
+
     }
     
 	@GetMapping

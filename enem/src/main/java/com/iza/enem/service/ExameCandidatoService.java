@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iza.enem.model.ExameCandidatoId;
+import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.dto.ExameCandidatoDTO;
 import com.iza.enem.model.ExameCandidato;
 import com.iza.enem.repository.ExameCandidatoRepository;
@@ -23,6 +24,7 @@ public class ExameCandidatoService {
 	}
 	
 	public ExameCandidato salvar(ExameCandidatoDTO exameCandidatoDTO) {
+		validarFormulario(exameCandidatoDTO);
 		return exameCandidatoRepository.save(exameCandidatoDTO.converterParaEntidade());
 	}
 	
@@ -34,4 +36,10 @@ public class ExameCandidatoService {
 		exameCandidatoRepository.deleteById(exameCandidatoId);
 	}
 
+	public void validarFormulario(ExameCandidatoDTO exameCandidato) throws RuntimeException{
+		if(exameCandidato.getCandidato() == null || exameCandidato.getExame() == null) {
+			throw new RuntimeException("Os campos não podem ser nulos");
+		}
+	}
+	
 }

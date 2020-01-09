@@ -3,6 +3,7 @@ package com.iza.enem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.dto.ExameDTO;
 import com.iza.enem.model.Exame;
 import com.iza.enem.repository.ExameRepository;
@@ -17,6 +18,7 @@ public class ExameService {
     }
 
     public Exame salvar(ExameDTO exame) {
+    	validarFormulario(exame);
         return exameRepository.save(exame.converterParaEntidade());
     }
     
@@ -35,4 +37,11 @@ public class ExameService {
     public Exame editar(ExameDTO exame) {
         return exameRepository.save(exame.converterParaEntidade());
     }
+    
+	public void validarFormulario(ExameDTO exame) throws RuntimeException{
+		if(exame.getVagas() == null || exame.getNome() == null) {
+			throw new RuntimeException("Os campos não podem ser nulos");
+		}
+	}
+	
 }

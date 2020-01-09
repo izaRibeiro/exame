@@ -15,9 +15,13 @@ public class CandidatoService {
 	private CandidatoRepository candidatoRepository;
 
 	public Candidato salvar(CandidatoDTO candidatoDTO) {
-		Candidato candidato = candidatoDTO.converterParaEntidade();
+			validarFormulario(candidatoDTO);			
+			Candidato candidato = candidatoDTO.converterParaEntidade();
 
-		return candidatoRepository.save(candidato);
+			return candidatoRepository.save(candidato);
+
+		
+
 	}
 
 	@Scheduled(fixedRate=500)
@@ -38,4 +42,9 @@ public class CandidatoService {
 		return candidatoRepository.save(candidato.converterParaEntidade());
 	}
 	
+	public void validarFormulario(CandidatoDTO candidato) throws RuntimeException{
+		if(candidato.getCidade() == null || candidato.getNome() == null) {
+			throw new RuntimeException("Os campos não podem ser nulos");
+		}
+	}
 }
