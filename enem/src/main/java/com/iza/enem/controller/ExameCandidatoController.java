@@ -2,6 +2,7 @@ package com.iza.enem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,20 +37,25 @@ public class ExameCandidatoController {
 	}
 	
 	@PostMapping
-	public ExameCandidato salvar(@RequestBody ExameCandidatoDTO exameCandidatoDTO) {
+	public ResponseEntity<Object> salvar(@RequestBody ExameCandidatoDTO exameCandidatoDTO) {
 		
 		try {
-			return exameCandidatoService.salvar(exameCandidatoDTO);
+			return ResponseEntity.ok(exameCandidatoService.salvar(exameCandidatoDTO));
 		}catch(RuntimeException e) {
-			throw new  ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+			//return ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 		
 	}
 
 	@PutMapping("/{idExame}/{idCandidato}")
 	public ExameCandidato editar(@RequestBody ExameCandidatoDTO exameCandidatoDTO) {
-		System.out.println(exameCandidatoDTO.getNota());
-		return exameCandidatoService.salvar(exameCandidatoDTO);
+		try {
+			return exameCandidatoService.salvar(exameCandidatoDTO);
+		}catch(RuntimeException e) {
+			throw new  ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+		
 	}
 	
 	@DeleteMapping("/{idExame}/{idCandidato}")

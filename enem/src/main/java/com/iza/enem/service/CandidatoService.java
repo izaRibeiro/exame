@@ -24,7 +24,6 @@ public class CandidatoService {
 
 	}
 
-	@Scheduled(fixedRate=500)
 	public Iterable<CandidatoDTO> buscarTodos() {
 		return candidatoRepository.buscarTodos();
 	}

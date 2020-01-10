@@ -40,6 +40,12 @@ public class ExameCandidatoService {
 		if(exameCandidato.getCandidato() == null || exameCandidato.getExame() == null) {
 			throw new RuntimeException("Os campos não podem ser nulos");
 		}
+		if(exameCandidato.getNota() != null) {
+			if(exameCandidato.getNota() < 0 || exameCandidato.getNota() > 100) {
+				throw new RuntimeException("A nota deve obrigatóriamente estar entre 0 e 100");
+			}
+		}
+
 	}
 	
 }

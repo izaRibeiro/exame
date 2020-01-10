@@ -57,9 +57,14 @@ public class CandidatoController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Candidato> editar(@PathVariable Integer id, @RequestBody CandidatoDTO c) {
-		Candidato candidato = candidatoService.editar(c);
-		return new ResponseEntity<>(candidato , HttpStatus.CREATED);
+	public ResponseEntity<Object> editar(@PathVariable Integer id, @RequestBody CandidatoDTO c) {
+		try {
+			
+			return new ResponseEntity<>(candidatoService.editar(c) , HttpStatus.CREATED);
+		}catch(RuntimeException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+
 	}
 
 }
