@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.iza.enem.dto.ExameDTO;
+import com.iza.enem.model.Candidato;
 import com.iza.enem.model.Exame;
 import com.iza.enem.service.ExameService;
 
@@ -46,6 +47,16 @@ public class ExameController {
 	public ExameDTO buscar(@PathVariable Integer id) {
 		Exame exame = exameService.buscar(id);
 		return exame.converterParaDTO();
+	}
+	
+	@GetMapping("/email/{email}")
+	public Exame buscarPorEmail(@PathVariable String email) {
+		return exameService.buscarPorEmail(email);
+	}
+	
+	@GetMapping("/senha/{senha}")
+	public Iterable<Exame> buscarPorSenha(@PathVariable String senha) {
+		return exameService.buscarPorSenha(senha);
 	}
 	
 	@DeleteMapping("/{id}")

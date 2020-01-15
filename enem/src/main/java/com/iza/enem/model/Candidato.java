@@ -33,6 +33,12 @@ public class Candidato implements Serializable {
 
 	@Column(name = "CIDADE")
 	private String cidade;
+	
+	@Column(name = "EMAIL")
+	private String email;
+	
+	@Column(name = "SENHA")
+	private String senha;
 
 	@ManyToMany(cascade = { CascadeType.MERGE })
 	@JoinTable(name = "exame_candidato", 
@@ -44,11 +50,22 @@ public class Candidato implements Serializable {
 	public Candidato() {
 	}
 
+	public Candidato(Integer id, String nome, String cidade, Integer idexame, String email, String senha) {
+		this.nome = nome;
+		this.cidade = cidade;
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		
+	}
+	
 	public Candidato(Integer id, String nome, String cidade, Integer idexame) {
 		this.nome = nome;
 		this.cidade = cidade;
 		this.id = id;
 	}
+	
+
 	
 	public Candidato(Integer id, String nome, String cidade) {
 		this.nome = nome;
@@ -84,13 +101,31 @@ public class Candidato implements Serializable {
 		this.cidade = cidade;
 	}
 
+	
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public CandidatoDTO converterParaDTO() {
 		CandidatoDTO candidatoDTO = new CandidatoDTO();
 		candidatoDTO.setCidade(this.cidade);
 		candidatoDTO.setNome(this.nome);
 		candidatoDTO.setId(this.id);
+		candidatoDTO.setEmail(this.email);
+		candidatoDTO.setSenha(this.senha);
 		return candidatoDTO;
 	}
 	

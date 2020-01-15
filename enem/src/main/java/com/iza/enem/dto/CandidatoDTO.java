@@ -7,6 +7,8 @@ public class CandidatoDTO {
 	private Integer id;
 	private String nome;
 	private String cidade;
+	private String email;
+	private String senha;
 	
 	private Integer idexame;
 	
@@ -14,15 +16,18 @@ public class CandidatoDTO {
 
 	}
 	
-	public CandidatoDTO(Integer id, String nome, String cidade) {
+	public CandidatoDTO(Integer id, String nome, String cidade, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cidade = cidade;
+		this.email = email;
+		this.senha = senha;
 	}
 
+
 	public Candidato converterParaEntidade() {
-		return new Candidato(id, nome, cidade, idexame);
+		return new Candidato(id, nome, cidade, idexame, email, senha);
 	}
 
 	public Integer getId() {
@@ -56,5 +61,23 @@ public class CandidatoDTO {
 	public void setIdexame(Integer idexame) {
 		this.idexame = idexame;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	
 	
 }

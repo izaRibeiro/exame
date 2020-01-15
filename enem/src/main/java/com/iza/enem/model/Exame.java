@@ -27,6 +27,12 @@ public class Exame {
 
 	@Column(name = "VAGAS")
 	private Integer vagas;
+	
+	@Column(name = "EMAIL")
+	private String email;
+	
+	@Column(name = "SENHA")
+	private String senha;
 
 	@ManyToMany(mappedBy = "exames")
 	@JsonManagedReference
@@ -39,6 +45,15 @@ public class Exame {
 	public Exame(Integer idExame) {
 		this.id = idExame;
 	}
+	
+	public Exame(Integer id, String nome, Integer vagas, String email, String senha) {
+		this.nome = nome;
+		this.vagas = vagas;
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+	}
+	
 
 	public Exame(Integer id, String nome, Integer vagas) {
 		this.nome = nome;
@@ -65,6 +80,23 @@ public class Exame {
 	public Integer getVagas() {
 		return vagas;
 	}
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public void setVagas(Integer vagas) {
 		this.vagas = vagas;
@@ -79,6 +111,8 @@ public class Exame {
 	}
 
 	public ExameDTO converterParaDTO() {
-		return new ExameDTO(id, nome, vagas);
+		return new ExameDTO(id, nome, vagas, email, senha);
 	}
+	
+	
 }

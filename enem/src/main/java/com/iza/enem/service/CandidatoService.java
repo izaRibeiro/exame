@@ -31,6 +31,15 @@ public class CandidatoService {
 	public Candidato buscar(Integer id) {
 		return candidatoRepository.findById(id).orElse(null);
 	}
+	
+	public Candidato buscarPorEmail(String email) {
+		return candidatoRepository.findByEmail(email);
+	}
+	
+	public Iterable<Candidato> buscarPorSenha(String senha) {
+		return candidatoRepository.findBySenha(senha);
+	}
+
 
 	public void excluir(Integer id) {
 		candidatoRepository.deleteById(id);
@@ -41,9 +50,29 @@ public class CandidatoService {
 		return candidatoRepository.save(candidato.converterParaEntidade());
 	}
 	
+	public void logar(String login, String senha) {
+		CandidatoDTO candidato = new CandidatoDTO();
+		candidato.setEmail(login);
+		candidato.setSenha(senha);
+		validarLogin(candidato);
+	}
+	
 	public void validarFormulario(CandidatoDTO candidato) throws RuntimeException{
 		if(candidato.getCidade() == null || candidato.getNome() == null) {
 			throw new RuntimeException("Os campos não podem ser nulos");
+		}
+		if(candidatoRepository.findByEmail(candidato.getEmail()) != null) {
+			throw new RuntimeException("O e-mail solicitado já existe. Por favor, insira outro e-mail");
+		}
+		
+	}
+	
+	public boolean validarLogin(CandidatoDTO candidato) {
+		if(candidatoRepository.findByEmail(candidato.getEmail()) != null
+			&& candidatoRepository.findBySenha(candidato.getSenha()) != null) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 }

@@ -50,6 +50,16 @@ public class CandidatoController {
 	public Candidato buscar(@PathVariable Integer id) {
 		return candidatoService.buscar(id);
 	}
+	
+	@GetMapping("/email/{email}")
+	public Candidato buscarPorEmail(@PathVariable String email) {
+		return candidatoService.buscarPorEmail(email);
+	}
+	
+	@GetMapping("/senha/{senha}")
+	public Iterable<Candidato> buscarPorSenha(@PathVariable String senha) {
+		return candidatoService.buscarPorSenha(senha);
+	}
 
 	@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
@@ -66,5 +76,7 @@ public class CandidatoController {
 		}
 
 	}
+	
+
 
 }

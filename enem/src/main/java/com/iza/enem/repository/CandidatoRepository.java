@@ -11,8 +11,10 @@ import com.iza.enem.model.Candidato;
 @Repository
 public interface CandidatoRepository extends CrudRepository<Candidato, Integer>{
 
-	@Query("SELECT new com.iza.enem.dto.CandidatoDTO(c.id, c.nome, c.cidade) FROM Candidato c")
+	@Query("SELECT new com.iza.enem.dto.CandidatoDTO(c.id, c.nome, c.cidade, c.email, c.senha) FROM Candidato c")
 	Iterable<CandidatoDTO> buscarTodos();
 
-
+	Candidato findByEmail(String email);
+	
+	Iterable<Candidato> findBySenha(String senha);
 }
