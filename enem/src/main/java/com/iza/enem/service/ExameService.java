@@ -18,9 +18,15 @@ public class ExameService {
         this.exameRepository = exameRepository;
     }
 
+
     public Exame salvar(ExameDTO exame) {
-    	validarFormulario(exame);
-        return exameRepository.save(exame.converterParaEntidade());
+    	try {
+        	validarFormulario(exame);
+            return exameRepository.save(exame.converterParaEntidade());
+    	}catch(Exception e) {
+    		throw new RuntimeException("Algum dos valores inseridos não é válido. Por favor, verifique as entradas");
+    	}
+
     }
     
 	public Iterable<ExameDTO> buscarTodos() {
@@ -63,6 +69,7 @@ public class ExameService {
 		if(exameRepository.findByEmail(exame.getEmail()) != null) {
 			throw new RuntimeException("O e-mail solicitado já existe. Por favor, insira outro e-mail");
 		}
+
 	}
 	
 	public boolean validarLogin(ExameDTO exame) {

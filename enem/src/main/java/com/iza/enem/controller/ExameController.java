@@ -33,7 +33,7 @@ public class ExameController {
         	Exame exame = exameService.salvar(examedto);
             return new ResponseEntity<>(exame, HttpStatus.CREATED);
     	}catch(RuntimeException e) {
-    		throw new  ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+    		throw new RuntimeException("Algum dos valores inseridos não é válido. Por favor, verifique as entradas");
     	}
 
     }
