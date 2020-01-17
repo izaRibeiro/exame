@@ -12,9 +12,22 @@ public class ExameCandidatoDTO {
 	
 	private Integer exame;
 	
+	private String nomeExame;
+	
+	private String nomeCandidato;
+	
 	public ExameCandidatoDTO() {
 	}
 
+	public ExameCandidatoDTO(Integer exame,Integer candidato, Double nota, String nomeExame, String nomeCandidato) {
+		super();
+		this.nota = nota;
+		this.candidato = candidato;
+		this.exame = exame;
+		this.nomeExame = nomeExame;
+		this.nomeCandidato = nomeCandidato;
+	}
+	
 	public ExameCandidatoDTO(Integer exame,Integer candidato, Double nota) {
 		super();
 		this.nota = nota;
@@ -47,6 +60,23 @@ public class ExameCandidatoDTO {
 
 	public void setExame(Integer exame) {
 		this.exame = exame;
+	}
+
+	
+	public String getNomeExame() {
+		return nomeExame;
+	}
+
+	public void setNomeExame(String nomeExame) {
+		this.nomeExame = nomeExame;
+	}
+
+	public String getNomeCandidato() {
+		return nomeCandidato;
+	}
+
+	public void setNomeCandidato(String nomeCandidato) {
+		this.nomeCandidato = nomeCandidato;
 	}
 
 	public ExameCandidato converterParaEntidade() {

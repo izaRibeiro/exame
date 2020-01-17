@@ -11,6 +11,10 @@ import com.iza.enem.model.ExameCandidatoId;
 @Repository
 public interface ExameCandidatoRepository extends CrudRepository<ExameCandidato, ExameCandidatoId>{
 
-	@Query("SELECT new com.iza.enem.dto.ExameCandidatoDTO(ec.id.exame, ec.id.candidato, ec.nota) FROM ExameCandidato ec ")
+
+	@Query("SELECT new com.iza.enem.dto.ExameCandidatoDTO(ec.id.exame, ec.id.candidato, ec.nota, e.nome, c.nome) "
+			+ "FROM ExameCandidato ec "
+			+ "JOIN Exame e ON e.id = ec.id.exame "
+			+ "JOIN Candidato c ON c.id = ec.id.candidato")
 	Iterable<ExameCandidatoDTO> buscarTodos();
 }
