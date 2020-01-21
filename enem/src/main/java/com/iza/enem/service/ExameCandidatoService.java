@@ -3,10 +3,9 @@ package com.iza.enem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iza.enem.model.ExameCandidatoId;
-import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.dto.ExameCandidatoDTO;
 import com.iza.enem.model.ExameCandidato;
+import com.iza.enem.model.ExameCandidatoId;
 import com.iza.enem.repository.ExameCandidatoRepository;
 
 @Service
@@ -45,7 +44,8 @@ public class ExameCandidatoService {
 				throw new RuntimeException("A nota deve obrigatóriamente estar entre 0 e 100");
 			}
 		}
-
 	}
+	
+
 	
 }

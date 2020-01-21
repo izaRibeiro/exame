@@ -1,7 +1,6 @@
 package com.iza.enem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.iza.enem.dto.CandidatoDTO;
@@ -19,9 +18,6 @@ public class CandidatoService {
 			Candidato candidato = candidatoDTO.converterParaEntidade();
 
 			return candidatoRepository.save(candidato);
-
-		
-
 	}
 
 	public Iterable<CandidatoDTO> buscarTodos() {
@@ -40,12 +36,10 @@ public class CandidatoService {
 		return candidatoRepository.findBySenha(senha);
 	}
 
-
 	public void excluir(Integer id) {
 		candidatoRepository.deleteById(id);
 	}
 
-	
 	public Candidato editar(CandidatoDTO candidato) {
 		return candidatoRepository.save(candidato.converterParaEntidade());
 	}
@@ -64,7 +58,6 @@ public class CandidatoService {
 		if(candidatoRepository.findByEmail(candidato.getEmail()) != null) {
 			throw new RuntimeException("O e-mail solicitado já existe. Por favor, insira outro e-mail");
 		}
-		
 	}
 	
 	public boolean validarLogin(CandidatoDTO candidato) {

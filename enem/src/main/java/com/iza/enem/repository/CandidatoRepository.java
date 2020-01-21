@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.iza.enem.dto.CandidatoDTO;
-import com.iza.enem.dto.ExameDTO;
 import com.iza.enem.model.Candidato;
 
 @Repository

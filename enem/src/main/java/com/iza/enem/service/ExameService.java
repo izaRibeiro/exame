@@ -3,9 +3,7 @@ package com.iza.enem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iza.enem.dto.CandidatoDTO;
 import com.iza.enem.dto.ExameDTO;
-import com.iza.enem.model.Candidato;
 import com.iza.enem.model.Exame;
 import com.iza.enem.repository.ExameRepository;
 
@@ -18,7 +16,6 @@ public class ExameService {
         this.exameRepository = exameRepository;
     }
 
-
     public Exame salvar(ExameDTO exame) {
     	try {
         	validarFormulario(exame);
@@ -26,7 +23,6 @@ public class ExameService {
     	}catch(Exception e) {
     		throw new RuntimeException("Algum dos valores inseridos não é válido. Por favor, verifique as entradas");
     	}
-
     }
     
 	public Iterable<ExameDTO> buscarTodos() {
@@ -45,7 +41,6 @@ public class ExameService {
 		return exameRepository.findBySenha(senha);
 	}
 
-	
 	public void excluir(Integer id) {
 		exameRepository.deleteById(id);;		
 	}
@@ -61,7 +56,6 @@ public class ExameService {
 		validarLogin(exame);
 	}
 	
-	
 	public void validarFormulario(ExameDTO exame) throws RuntimeException{
 		if(exame.getVagas() == null || exame.getNome() == null) {
 			throw new RuntimeException("Os campos não podem ser nulos");
@@ -69,7 +63,6 @@ public class ExameService {
 		if(exameRepository.findByEmail(exame.getEmail()) != null) {
 			throw new RuntimeException("O e-mail solicitado já existe. Por favor, insira outro e-mail");
 		}
-
 	}
 	
 	public boolean validarLogin(ExameDTO exame) {
@@ -80,6 +73,5 @@ public class ExameService {
 			return false;
 		}
 	}
-	
 	
 }

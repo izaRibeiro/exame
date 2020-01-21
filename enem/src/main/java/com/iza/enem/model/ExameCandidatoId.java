@@ -18,35 +18,28 @@ public class ExameCandidatoId implements Serializable{
 	public ExameCandidatoId() {
 	}
 
-
-	
 	public ExameCandidatoId(Integer exame, Integer candidato) {
 		super();
 		this.exame = exame;
 		this.candidato = candidato;
-		
 	}
 
 	public Integer getCandidato() {
 		return candidato;
 	}
 
-
 	public void setCandidato(Integer candidato) {
 		this.candidato = candidato;
 	}
-
 
 	public Integer getExame() {
 		return exame;
 	}
 
-
 	public void setExame(Integer exame) {
 		this.exame = exame;
 	}
 	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

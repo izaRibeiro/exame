@@ -15,6 +15,7 @@ public interface ExameCandidatoRepository extends CrudRepository<ExameCandidato,
 	@Query("SELECT new com.iza.enem.dto.ExameCandidatoDTO(ec.id.exame, ec.id.candidato, ec.nota, e.nome, c.nome) "
 			+ "FROM ExameCandidato ec "
 			+ "JOIN Exame e ON e.id = ec.id.exame "
-			+ "JOIN Candidato c ON c.id = ec.id.candidato")
+			+ "JOIN Candidato c ON c.id = ec.id.candidato "
+			+ "ORDER BY ec.nota DESC")
 	Iterable<ExameCandidatoDTO> buscarTodos();
 }

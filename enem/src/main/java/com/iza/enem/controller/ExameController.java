@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.iza.enem.dto.ExameDTO;
-import com.iza.enem.model.Candidato;
 import com.iza.enem.model.Exame;
 import com.iza.enem.service.ExameService;
 
